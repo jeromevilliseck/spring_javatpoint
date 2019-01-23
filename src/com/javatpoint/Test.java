@@ -7,6 +7,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import java.util.logging.Level;
+
 public class Test {
     @SuppressWarnings("deprecation")
     public static void main(String[] args) {
@@ -21,31 +23,27 @@ public class Test {
         Student student = (Student)factory.getBean("studentbean");
         student.displayInfo();
 
-        System.out.println();
-
         //Object created with context object
         Employee student2 = (Employee)context.getBean("e");
         student2.show();
-
-        System.out.println();
 
         //CI with collection
         Question questionOne = (Question)factory.getBean("q");
         questionOne.displayInfo();
 
-        System.out.println();
-
         //CI with collection 2
         Question2 questionTwo = (Question2)factory.getBean("r");
         questionTwo.displayInfo();
 
-        System.out.println();
-
-        //CI with collection 3
+        //CI with Map
         Question3 questionThree = (Question3)factory.getBean("z");
-        System.out.println(questionThree.toString());
-        System.out.println(questionThree.displayMap());
 
-        System.out.println();
+        LoggerSingleton.getInstance().log(
+                Level.INFO, "Object from tutorial CI with Map : {0} \r\n", questionThree);
+
+        LoggerSingleton.getInstance().log(
+                Level.INFO, "Map from tutorial CI with Map : {0} \r\n", questionThree.displayMap());
+
+        //CI with Map2
     }
 }

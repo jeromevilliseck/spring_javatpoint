@@ -1,12 +1,14 @@
 package com.javatpoint;
 
+import java.util.logging.Level;
+
 public class Employee {
     private int id;
     private String name;
     private Address address;//Aggregation
 
     public Employee(){
-        System.out.println("def cons");
+        LoggerSingleton.getInstance().log(Level.INFO, "def cons \r\n");
     }
 
     public Employee(int id){
@@ -29,7 +31,6 @@ public class Employee {
     }
 
     void show(){
-        System.out.println(id + " " + name);
-        System.out.println(address.toString());
+        LoggerSingleton.getInstance().log(Level.INFO, "id:{0} \r\n name:{1} \r\n address:{2} \r\n");
     }
 }

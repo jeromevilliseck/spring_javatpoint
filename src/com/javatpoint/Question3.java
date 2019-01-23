@@ -28,10 +28,8 @@ public class Question3 extends GenericQuestion {
 
     @Override
     public String toString() {
-        return "Question3{" +
-                "answers=" + answers +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format("Question3 %n number: %d %n answers: %s %n name: %s \r\n", id, answers, name);
     }
+
+
 }

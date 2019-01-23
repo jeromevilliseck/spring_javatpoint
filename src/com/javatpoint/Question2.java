@@ -1,6 +1,7 @@
 package com.javatpoint;
 
 import java.util.List;
+import java.util.logging.Level;
 
 public class Question2 extends GenericQuestion {
     private List<Answer> answers;
@@ -11,11 +12,10 @@ public class Question2 extends GenericQuestion {
     }
 
     void displayInfo(){
-        System.out.println(this.id + " " + this.name);
-        System.out.println("answers are");
+        LoggerSingleton.getInstance().log(Level.INFO, "id:{0} \r\n name:{1} \r\n", new Object[]{id, name});
 
         for (Answer answer : this.answers) {
-            System.out.println(answer);
+            LoggerSingleton.getInstance().log(Level.INFO, "answers: {0} \r\n", answer);
         }
     }
 }

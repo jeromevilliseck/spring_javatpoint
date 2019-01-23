@@ -20,6 +20,7 @@
       <root url="jar://$PROJECT_DIR$/lib/spring-tx-4.3.18.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spring-orm-4.3.18.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spring-test-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/log4j-core-2.11.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -71,4 +71,24 @@
         </constructor-arg>
     </bean>
 
+    <!--CI With Map 2-->
+    <bean id="answer1" class="com.javatpoint.Answer">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Java is a Programming Language"/>
+        <constructor-arg value="12/12/2001"/>
+    </bean>
+
+    <bean id="answer2" class="com.javatpoint.Answer">
+        <constructor-arg value="2"/>
+        <constructor-arg value="Java is a Platform"/>
+        <constructor-arg value="12/12/2003"/>
+    </bean>
+
+    <bean id="user1" class="com.javatpoint.User">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Arun Kumar"/>
+        <constructor-arg value="arun@gmail.com"/>
+    </bean>
+
+
 </beans>

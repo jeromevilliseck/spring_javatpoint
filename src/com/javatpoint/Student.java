@@ -1,5 +1,7 @@
 package com.javatpoint;
 
+import java.util.logging.Level;
+
 public class Student {
     private String name;
 
@@ -12,6 +14,6 @@ public class Student {
     }
 
     void displayInfo(){
-        System.out.println("Hello: "+name);
+        LoggerSingleton.getInstance().log(Level.INFO, "Hello : {0} \r\n", name);
     }
 }
