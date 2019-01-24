@@ -1,11 +1,11 @@
-package com.javatpoint;
+package com.javatpoint.dependancyinjection;
 
 import java.util.logging.Level;
 
 public class Employee {
-    private int id;
-    private String name;
-    private Address address;//Aggregation
+    protected int id;
+    protected String name;
+    private Address address;//Aggregation link
 
     public Employee(){
         LoggerSingleton.getInstance().log(Level.INFO, "def cons \r\n");
@@ -31,6 +31,8 @@ public class Employee {
     }
 
     void show(){
-        LoggerSingleton.getInstance().log(Level.INFO, "id:{0} \r\n name:{1} \r\n address:{2} \r\n");
+        LoggerSingleton.getInstance().log(
+                Level.INFO, "id:{0} \r\n name:{1} \r\n address:{2} \r\n",
+                new Object[]{this.id, this.name, this.address});
     }
 }

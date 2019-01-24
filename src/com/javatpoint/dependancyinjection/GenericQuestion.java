@@ -1,4 +1,4 @@
-package com.javatpoint;
+package com.javatpoint.dependancyinjection;
 
 public abstract class GenericQuestion {
     int id;

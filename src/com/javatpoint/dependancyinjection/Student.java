@@ -1,4 +1,4 @@
-package com.javatpoint;
+package com.javatpoint.dependancyinjection;
 
 import java.util.logging.Level;
 

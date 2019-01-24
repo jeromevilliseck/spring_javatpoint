@@ -5,24 +5,24 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="studentbean" class="com.javatpoint.Student">
+    <bean id="studentbean" class="com.javatpoint.dependancyinjection.Student">
         <property name="name" value="Vimal Jaiswal"/>
     </bean>
 
-    <bean id="e" class="com.javatpoint.Employee">
+    <bean id="emp" class="com.javatpoint.dependancyinjection.Employee">
         <constructor-arg value="12" type="int"/> <!--this line specifies a constructor with 1 argument with the bean-->
         <constructor-arg value="Sonoo Borelli"/>
         <constructor-arg ref="a1"/>
     </bean>
 
-    <bean id="a1" class="com.javatpoint.Address">
+    <bean id="a1" class="com.javatpoint.dependancyinjection.Address">
         <constructor-arg value="ghaziabad"/>
         <constructor-arg value="UP"/>
         <constructor-arg value="India"/>
     </bean>
 
     <!--CI With Collection-->
-    <bean id="q" class="com.javatpoint.Question">
+    <bean id="q" class="com.javatpoint.dependancyinjection.Question">
         <constructor-arg value="111"/>
         <constructor-arg value="What is java ?"/>
         <constructor-arg>
@@ -35,19 +35,19 @@
     </bean>
 
     <!--CI with collection 2-->
-    <bean id="ans1" class="com.javatpoint.Answer">
+    <bean id="ans1" class="com.javatpoint.dependancyinjection.Answer">
         <constructor-arg value="1"/>
         <constructor-arg value="Java is a programming language"/>
         <constructor-arg value="John"/>
     </bean>
 
-    <bean id="ans2" class="com.javatpoint.Answer">
+    <bean id="ans2" class="com.javatpoint.dependancyinjection.Answer">
         <constructor-arg value="2"/>
         <constructor-arg value="Java is a Platform"/>
         <constructor-arg value="Ravi"/>
     </bean>
 
-    <bean id="r" class="com.javatpoint.Question2">
+    <bean id="r" class="com.javatpoint.dependancyinjection.Question2">
         <constructor-arg value="111"/>
         <constructor-arg value="What is java ?"/>
         <constructor-arg>
@@ -59,7 +59,7 @@
     </bean>
 
     <!--CI With Map-->
-    <bean id="z" class="com.javatpoint.Question3">
+    <bean id="z" class="com.javatpoint.dependancyinjection.Question3">
         <constructor-arg value="11"/>
         <constructor-arg value="What is Java?"/>
         <constructor-arg>
@@ -72,23 +72,104 @@
     </bean>
 
     <!--CI With Map 2-->
-    <bean id="answer1" class="com.javatpoint.Answer">
+    <bean id="answer1" class="com.javatpoint.dependancyinjection.Answer2">
         <constructor-arg value="1"/>
         <constructor-arg value="Java is a Programming Language"/>
         <constructor-arg value="12/12/2001"/>
     </bean>
 
-    <bean id="answer2" class="com.javatpoint.Answer">
+    <bean id="answer2" class="com.javatpoint.dependancyinjection.Answer2">
         <constructor-arg value="2"/>
         <constructor-arg value="Java is a Platform"/>
         <constructor-arg value="12/12/2003"/>
     </bean>
 
-    <bean id="user1" class="com.javatpoint.User">
+    <bean id="user1" class="com.javatpoint.dependancyinjection.User">
         <constructor-arg value="1"/>
         <constructor-arg value="Arun Kumar"/>
         <constructor-arg value="arun@gmail.com"/>
     </bean>
+
+    <bean id="user2" class="com.javatpoint.dependancyinjection.User">
+        <constructor-arg value="2"/>
+        <constructor-arg value="Varun Kumar"/>
+        <constructor-arg value="Varun@gmail.com"/>
+    </bean>
+
+    <bean id="questionMap2" class="com.javatpoint.dependancyinjection.Question4">
+        <constructor-arg value="1"/>
+        <constructor-arg value="What is Java?"/>
+        <constructor-arg>
+            <map>
+                <entry key-ref="answer1" value-ref="user1"/>
+                <entry key-ref="answer2" value-ref="user2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!--CI inheriting bean-->
+    <bean id="e1" class="com.javatpoint.dependancyinjection.Employee">
+        <constructor-arg value="101"/>
+        <constructor-arg value="Sachin"/>
+    </bean>
+
+    <bean id="addressWithStreet" class="com.javatpoint.dependancyinjection.SpecificAddress">
+        <constructor-arg value="21,Lohianagar"/>
+        <constructor-arg value="Ghaziabad"/>
+        <constructor-arg value="UP"/>
+        <constructor-arg value="USA"/>
+    </bean>
+
+    <bean id="e2" class="com.javatpoint.dependancyinjection.Employee" parent="e1">
+        <constructor-arg ref="addressWithStreet"/>
+    </bean>
+
+    <!--Setter Injection-->
+    <!--no longer use constructor tags but properties names that will use setters-->
+    <bean id="obj" class="com.javatpoint.dependancyinjection.EmployeeWithCity">
+        <property name="id" value="20"/>
+        <property name="name" value="Arun"/>
+        <property name="city" value="ghaziabad"/>
+    </bean>
+
+    <!--Autowire by name-->
+    <bean id="c" class="com.javatpoint.dependancyinjection.C"/> <!--if you rename c by c1, it doesn't work-->
+    <bean id="a" class="com.javatpoint.dependancyinjection.A" autowire="byName"/>
+
+    <!--Autowire by type-->
+    <bean id="b1" class="com.javatpoint.dependancyinjection.B"/> <!--even if "b1" is different from the name
+                                                                   of the class (B), it works-->
+    <bean id="e" class="com.javatpoint.dependancyinjection.E" autowire="byType"/> <!-- autowire, the first class
+    attribute, B, even if is named b1-->
+
+    <!--It will throw exception if you have multiple bean of one type with different names and you try autowire
+    by names-->
+    <bean id="c1" class="com.javatpoint.dependancyinjection.C"/>
+    <bean id="c2" class="com.javatpoint.dependancyinjection.C"/>
+    <bean id="abis" class="com.javatpoint.dependancyinjection.A" autowire="byName"/><!--if you autowire by Type,
+                                                you will have NoUniqueBeanDefinitionException, try to get A class
+                                                with C member instanciated 2 times, c1, and c2. It's not possible.
+                                                -->
+
+    <!--Autowire by constructor-->
+
+    <bean id="aconst" class="com.javatpoint.dependancyinjection.A" autowire="constructor"/>
+    <bean id="c4" class="com.javatpoint.dependancyinjection.C"/>
+                                                <!--IMPORTANT if you autowire by constructor, you have to name bean
+                                                 id with the same name of the param specified in the class
+                                                 constructor ex: nameClass(C c4)
+                                                 if you want this to works. See class A in this project-->
+
+    <!--No autowiring mode exist too-->
+
+
+    <!--Dependancy injection with Factory method in Spring-->
+
+    <!--A bean singleton with the factory-method attribute (to get the singleton)-->
+    <bean id="singletonA" class="com.javatpoint.dependancyinjection.SingletonA" factory-method="getSingletonA"/>
+
+    <!--A static factory method which return F or G, which implements the same interface-->
+    <bean id="singletonFactory" class="com.javatpoint.dependancyinjection.PrintableFactory" factory-method="getPrintable"/>
 
 
 </beans>
